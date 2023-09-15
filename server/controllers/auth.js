@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Client from "../models/Client.js";
 import Advocate from "../models/Advocate.js";
-import Client from "../models/Client.js";
+
 
    // REGISTER CLIENT   
    export const register = async(req, res)=>{
@@ -13,10 +13,10 @@ import Client from "../models/Client.js";
             phoneNo,
             email,
             password,
-            picturePath,
-            location, 
-            gender,
-            age,
+            // picturePath,
+            // location, 
+            // gender,
+            // age,
         } = req.body
        
         const salt = await bcrypt.genSalt();
@@ -28,10 +28,10 @@ import Client from "../models/Client.js";
             phoneNo,
             email,
             password : passwordHash,
-            picturePath,
-            location, 
-            gender,
-            age,
+            // picturePath,
+            // location, 
+            // gender,
+            // age,
         });
 
         const savedClient = await newClient.save();

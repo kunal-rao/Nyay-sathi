@@ -9,7 +9,11 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 // import { error } from "console";
-
+import Client from "./models/Client.js";
+import Advocate from "./models/Advocate.js";
+import { verifyToken } from "./middleware/auth.js";
+import router from "./routes/auth.js";
+import { register } from "./controllers/auth.js";
 
 
 
@@ -17,7 +21,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);      
 dotenv.config();
-const app = express;
+const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
@@ -41,13 +45,13 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 
     //  ROUTES WITH FILE 
-
+  app.post("/auth/register", register);
 
     //   ROUTES 
 
 
     //  MONGOOSE SETUP 
-const port = process.env.PORT || 6001;
+const PORT = process.env.PORT || 6001;
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
