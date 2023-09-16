@@ -39,6 +39,7 @@ const AdvocateSchema = new mongoose.Schema(
         },
         age:{
             type: Number,
+            min: 16,
         },
         location:{
             type: String,
@@ -50,8 +51,11 @@ const AdvocateSchema = new mongoose.Schema(
         description: {
             type: String,
             require: true,
+            default: ""
         },
-        experience: String,
+        experience: {
+            type: String,
+        },
         college: {
             type: String,
             require: true,

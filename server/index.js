@@ -14,6 +14,8 @@ import Advocate from "./models/Advocate.js";
 import { verifyToken } from "./middleware/auth.js";
 import router from "./routes/auth.js";
 import { register } from "./controllers/auth.js";
+import { login } from "./controllers/auth.js";
+import User from "./models/User.js";
 
 
 
@@ -46,6 +48,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
     //  ROUTES WITH FILE 
   app.post("/auth/register", register);
+  app.post("/auth/login", login);
 
     //   ROUTES 
 

@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const ClientSchema = new mongoose.Schema(
     {
@@ -15,14 +15,14 @@ const ClientSchema = new mongoose.Schema(
             min: 2,
             max: 50,
         },
-        phoneNo: {
-            type: Number,
-            require: true,
-            max: 9999999999,
-        },
+        // phoneNo: {
+        //     type: Number,
+        //     require: true,
+        //     max: 9999999999,
+        // },
         email: {
             type: String,
-            // require: true ,
+            require: true ,
             unique: true,
         },
         password: {
@@ -30,19 +30,19 @@ const ClientSchema = new mongoose.Schema(
             require: true,
             min: 3
         },
-        picturePath: {
-            type: String,
-            default: "",
-          },
-        gender: {
-            type:String,
-        },
-        age:{
-            type: Number,
-        },
-        location:{
-            type: String,
-        },
+        // picturePath: {
+        //     type: String,
+        //     default: "",
+        //   },
+        // gender: {
+        //     type:String,
+        // },
+        // age:{
+        //     type: Number,
+        // },
+        // location:{
+        //     type: String,
+        // },
         
     },
     { timestamps: true }
