@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
             require: true,
             min: 3
         },
-       roll:{
+       type:{
            type: String,
            Enumerator: ["Client", "Advocate"],
            default: "Client",
@@ -35,5 +35,82 @@ const UserSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+const AdvocateSchema = new mongoose.Schema(
+    {
+        type: {
+            type: String,
+            default: "Advocate"
+        },
+        picturePath: {
+            type: String,
+            default: "",
+          },
+        gender: {
+            type:String,
+        },
+        age:{
+            type: Number,
+            min: 16,
+        },
+        location:{
+            type: String,
+        },
+        enrollmentNo:{
+            type: String,
+            require: true,
+        },
+        description: {
+            type: String,
+            require: true,
+            default: ""
+        },
+        rating:{
+            type: Number,
+            default: 0,
+        },
+        experience: {
+            type: String,
+        },
+        portfolioLink: {
+            type: String,
+            require: true,
+        },
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+          },
+        
+    },
+    { timestamps: true }
+);
+
+const ClientSchema = new mongoose.Schema(
+    {
+        
+        type: {
+            type: String,
+            default: "Client"
+        },
+        picturePath: {
+            type: String,
+            default: "",
+          },
+        gender: {
+            type:String,
+        },
+        age:{
+            type: Number,
+        },
+        location:{
+            type: String,
+        },
+        
+    },
+    { timestamps: true }
+);
+
+const Advocate = mongoose.model("advocate", AdvocateSchema);
+const Client = mongoose.model("client", ClientSchema);
 const User = mongoose.model("User", UserSchema);
-export default User;
+
+export { User, Advocate, Client};

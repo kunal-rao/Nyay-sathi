@@ -9,13 +9,17 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 // import { error } from "console";
-import Client from "./models/Client.js";
-import Advocate from "./models/Advocate.js";
+// import {client} from "./models/Client.js";
+// import Advocate from "./models/Advocate.js";
 import { verifyToken } from "./middleware/auth.js";
 import router from "./routes/auth.js";
 import { register } from "./controllers/auth.js";
 import { login } from "./controllers/auth.js";
-import User from "./models/User.js";
+import {User} from "./models/User.js";
+import authRoutes from "./routes/auth.js";
+import otpRoutes from "./routes/otp.js"
+import clientRoutes from "./routes/Client.js"
+import advocateRoutes from "./routes/Advocate.js"
 
 
 
@@ -47,11 +51,13 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 
     //  ROUTES WITH FILE 
-  app.post("/auth/register", register);
-  app.post("/auth/login", login);
+   app.use('/client', upload.single("picture" , clientRoutes));
+   app.use('/advocate', upload.single("picture" , advocateRoutes));
+
 
     //   ROUTES 
-
+    app.use("/auth", authRoutes);
+    app.use("/otp", otpRoutes);
 
     //  MONGOOSE SETUP 
 const PORT = process.env.PORT || 6001;

@@ -1,8 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import Client from "../models/Client.js";
-import Advocate from "../models/Advocate.js";
-import User from "../models/User.js";
+import OTP from "../models/otp.js"
+import {User} from "../models/User.js"
 
 
    // REGISTER User
@@ -14,7 +13,34 @@ import User from "../models/User.js";
             email,
             password,
             roll,
+            otp
         } = req.body
+
+          
+        if (!firstName || !lastName ||!email || !password || !otp) {
+            return res.status(403).json({
+              success: false,
+              message: 'All fields are required',
+            });
+          }
+          // Check if user already exists
+          const existingUser = await User.findOne({ email });
+          if (existingUser) {
+            return res.status(400).json({
+              success: false,
+              message: 'User already exists',
+            });
+          }
+          // Find the most recent OTP for the email
+          const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
+          if (response.length === 0 || otp !== response[0].otp) {
+            return res.status(400).json({
+              success: false,
+              message: 'The OTP is not valid',
+            });
+          }
+
+
        
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
@@ -54,50 +80,3 @@ export const login = async(req,res)=>{
     }
 };
 
-//  REGISTERATION AS A ADVOCATE
-// export const registerAdvocate = async (req, res) =>{
-//     try {
-//         const {
-//             firstName,
-//             lastName, 
-//             phoneNo,
-//             email,
-//             password,
-//             picturePath,
-//             location, 
-//             gender,
-//             age,
-//             barCode,
-//             description,
-//             experience,
-//             college,
-//         } = req.body;
-
-//         const salt = await bcrypt.genSalt();
-//         const passwordHash = await bcrypt.hash(password, salt);
-
-//         const newAdvocate = new Advocate({
-//             firstName,
-//             lastName, 
-//             phoneNo,
-//             email,
-//             password : passwordHash,
-//             picturePath,
-//             location, 
-//             gender,
-//             age,
-//             barCode,
-//             description,
-//             experience,
-//             college,
-//         });
-
-//         const savedAdvocate = await newAdvocate.save();
-//         res.status(201).json(savedAdvocate);
-
-//     } catch (error) {
-        
-//     }
-// };
-
-// // LOGGIN IN AS AN ADVOCATE
