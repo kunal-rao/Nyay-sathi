@@ -49,7 +49,7 @@ const AdvocateSchema = new mongoose.Schema(
             type:String,
         },
         age:{
-            type: Number,
+            type: Number, 
             min: 16,
         },
         location:{
@@ -75,7 +75,7 @@ const AdvocateSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        _id: {
+        advocate_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
           },
@@ -104,13 +104,17 @@ const ClientSchema = new mongoose.Schema(
         location:{
             type: String,
         },
+        client_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+          },
         
     },
     { timestamps: true }
 );
 
-const Advocate = mongoose.model("advocate", AdvocateSchema);
-const Client = mongoose.model("client", ClientSchema);
+const Advocate = mongoose.model("Advocate", AdvocateSchema);
+const Client = mongoose.model("Client", ClientSchema);
 const User = mongoose.model("User", UserSchema);
 
-export { User, Advocate, Client};
+export { User, Advocate, Client}; 

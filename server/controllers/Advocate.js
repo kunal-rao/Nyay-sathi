@@ -1,4 +1,4 @@
-import User, { Advocate } from "../models/User";
+import{ User,  Advocate } from "../models/User.js";
 
 
 export const getUser = async(req,res)=>{
@@ -42,7 +42,7 @@ export const createAdvocateProfile = async(req, res) => {
                 gender,
                 experience,
         });
-        newAdvocate._id = newUser._id  // gives the advocate the same ID
+        newAdvocate.advocate_id = newUser._id  // gives the advocate the same ID
         await newAdvocate.save();
 
 
@@ -55,6 +55,4 @@ export const createAdvocateProfile = async(req, res) => {
 };
 
 
-
-
-export { getUser, createAdvocateProfile};
+export default createAdvocateProfile;

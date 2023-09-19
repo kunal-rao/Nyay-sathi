@@ -1,11 +1,11 @@
-import express from "express()";
-import { User, Advocate } from "../models/User";
-import { createAdvocateProfile } from "../controllers/Advocate";
-import { verifyToken } from "../middleware/auth";
+import express from "express";
+// import { User , Advocate} from "../models/User.js";
+import  createAdvocateProfile  from "../controllers/Advocate.js";
+import { verifyToken } from "../middleware/auth.js";
 
 
-const router = express.router();
+const router = express.Router();
 
-router.post('/:id',verifyToken, createAdvocateProfile );
+router.post('/:id', verifyToken, createAdvocateProfile );
 
 export default  router;

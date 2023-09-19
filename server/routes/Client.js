@@ -1,10 +1,10 @@
-import express from "express()";
-import { User, Client } from "../models/User";
-import { createClientProfile } from "../controllers/Client";
-import { verifyToken } from "../middleware/auth";
+import express from "express";
+// import { User, Client } from "../models/User.js";
+import { createClientProfile } from "../controllers/Client.js";
+import { verifyToken } from "../middleware/auth.js";
 
-const router = express.router();
+const router = express.Router();
 
-router.post("./:id", createClientProfile);
+router.post("/:id",verifyToken, createClientProfile);
 
 export default router;

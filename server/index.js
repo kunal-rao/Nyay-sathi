@@ -51,8 +51,8 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 
     //  ROUTES WITH FILE 
-   app.use('/client', upload.single("picture" , clientRoutes));
-   app.use('/advocate', upload.single("picture" , advocateRoutes));
+   app.use('/client', verifyToken,upload.single("picture" ), clientRoutes);
+   app.use('/advocate', verifyToken, upload.single("picture") , advocateRoutes);
 
 
     //   ROUTES 

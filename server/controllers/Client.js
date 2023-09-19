@@ -1,4 +1,4 @@
- import { User, Client } from "../models/User";
+ import { User, Client } from "../models/User.js";
 
  export const createClientProfile = async (req, res)=>{
    try {  
@@ -10,7 +10,7 @@
     const roll = user.roll;
 }
 
-if (roll === "Advocate") {
+if (roll === "Client") {
     const{
         location,
         picturePath,
@@ -25,14 +25,27 @@ const newClient = new Client({
     age,
     gender,
 });
-newClient._id = newUser._id  // gives the advocate the same ID
+newClient.client_id = newUser._id  // gives the advocate the same ID
 await newClient.save();
 
-return res.status(201).json({message: "advocate profile created"});
+return res.status(201).json({message: "client profile created"});
     
    } catch (error) {
     res.status(500).json({message: error.message})
    }
  };
 
- export {createClientProfile};
+ // getting advocate result based on location of the user.
+export const searchAdvocateOnLocation = async(req, res)=>{
+  try {
+    const {client_id} = req.params;
+    const client = await Client.findById(client_id);
+    const location = client.location;
+
+    
+  } catch (error) {
+    
+  }
+};
+
+ export default createClientProfile;
