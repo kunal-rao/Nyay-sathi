@@ -59,7 +59,7 @@ const AdvocateSchema = new mongoose.Schema(
             type: String,
             require: true,
         },
-        description: {
+        description:  {
             type: String,
             require: true,
             default: ""

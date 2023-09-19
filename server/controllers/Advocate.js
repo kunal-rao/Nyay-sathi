@@ -15,40 +15,37 @@ export const createAdvocateProfile = async(req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
+        const type =  user.type;
 
-        if (user) {
-            // const { roll } = req.user;
-            const roll = user.roll;
-        }
-
-        if (roll === "Advocate") {
-            const{
-                discription,
+        if (type === "Advocate") {
+            const{ 
                 location,
+                description,
                 picturePath,
                 age,
                 enrollmentNO,
                 gender,
                 experience,
             } = req.body;
-        }
+        
 
         const newAdvocate = new Advocate({
-            discription,
                 location,
+                description,
                 picturePath,
                 age,
                 enrollmentNO,
                 gender,
                 experience,
         });
-        newAdvocate.advocate_id = newUser._id  // gives the advocate the same ID
+        newAdvocate.advocate_id = user._id  // gives the advocate the same ID
         await newAdvocate.save();
 
 
 
         return res.status(201).json({message: "advocate profile created"});
-    } catch (error) {
+    } }
+    catch (error) {
         res.status(500).json({message: error.message})
 
     }

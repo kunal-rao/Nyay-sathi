@@ -12,7 +12,7 @@ import {User} from "../models/User.js"
             lastName, 
             email,
             password,
-            roll,
+            type,
             otp
         } = req.body
 
@@ -32,13 +32,13 @@ import {User} from "../models/User.js"
             });
           }
           // Find the most recent OTP for the email
-          const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
-          if (response.length === 0 || otp !== response[0].otp) {
-            return res.status(400).json({
-              success: false,
-              message: 'The OTP is not valid',
-            });
-          }
+          // const response = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
+          // if (response.length === 0 || otp !== response[0].otp) {
+          //   return res.status(400).json({
+          //     success: false,
+          //     message: 'The OTP is not valid',
+          //   });
+          // }
 
 
        
@@ -50,7 +50,7 @@ import {User} from "../models/User.js"
             lastName, 
             email,
             password: passwordHash,
-            roll,
+            type,
         });
 
         const savedUser = await newUser.save();
@@ -63,7 +63,7 @@ import {User} from "../models/User.js"
    };
 
 //    LOGGING IN AS User
-export const login = async(req,res)=>{
+export const login = async (req,res)=>{
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
