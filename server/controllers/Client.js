@@ -2,8 +2,8 @@ import { User, Client, Advocate } from "../models/User.js";
 
 export const createClientProfile = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
+    const { username } = req.params;
+    const user = await User.findOne({ username: username});
     const type =  user.type;
 
 
@@ -41,8 +41,8 @@ export const createClientProfile = async (req, res) => {
 // getting advocate result based on location of the user.
 export const searchAdvocateOnLocation = async (req, res) => {
   try {
-    const { id } = req.params;
-    const client = await Client.findOne({client_id: id});
+    const { username } = req.params;
+    const client = await Client.findOne({username : username});
     const location =  client.location;
     console.log(location);
 
