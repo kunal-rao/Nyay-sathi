@@ -14,8 +14,8 @@ import Post from "../models/post.js";
 
 const createAdvocateProfile = async(req, res) => {
     try {
-        const { id } = req.params;
-        const user = await User.findById(id);
+        const { username } = req.params;
+        const user = await User.findOne({username: username});
         const type =  user.type;
         
 
