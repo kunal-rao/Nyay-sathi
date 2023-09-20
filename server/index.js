@@ -51,15 +51,15 @@ const upload = multer({ storage });
 
 
 //  ROUTES WITH FILE 
-app.use('/client', verifyToken, clientRoutes);
-app.use('/advocate', verifyToken, advocateRoutes);
+app.use('/client', verifyToken, upload.single("picture"), clientRoutes);
+app.use('/advocate', verifyToken, upload.single("picture"), advocateRoutes);
 
 
 //   ROUTES 
 app.use("/auth", authRoutes);
 app.use("/otp", otpRoutes);
 
-//  MONGOOSE SETUP 
+//  MONGOOSE SETUP     
 const PORT = process.env.PORT || 6001;
 
 mongoose.connect(process.env.MONGO_URL, {

@@ -5,12 +5,7 @@ export const createClientProfile = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(id);
     const type =  user.type;
-   
 
-
-    if (user) {
-      const roll = user.roll;
-    }
 
     if (type === "Client") {
       const {
