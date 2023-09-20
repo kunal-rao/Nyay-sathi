@@ -13,6 +13,7 @@ export const createClientProfile = async (req, res) => {
         picturePath,
         age,
         gender,
+        
       } = req.body;
     
 
@@ -21,6 +22,7 @@ export const createClientProfile = async (req, res) => {
       picturePath,
       age,
       gender,
+
     });
     newClient.client_id = user._id  // gives the advocate the same ID
     await newClient.save();

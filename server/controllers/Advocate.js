@@ -1,4 +1,5 @@
 import{ User,  Advocate } from "../models/User.js";
+import Post from "../models/post.js";
 
 
 export const getUser = async(req,res)=>{

@@ -20,6 +20,7 @@ import authRoutes from "./routes/auth.js";
 import otpRoutes from "./routes/otp.js"
 import clientRoutes from "./routes/Client.js"
 import advocateRoutes from "./routes/Advocate.js"
+import userRoutes from "./routes/user.js"
 
 
 
@@ -58,6 +59,7 @@ app.use('/advocate', verifyToken, upload.single("picture"), advocateRoutes);
 //   ROUTES 
 app.use("/auth", authRoutes);
 app.use("/otp", otpRoutes);
+app.use("/user", userRoutes);
 
 //  MONGOOSE SETUP     
 const PORT = process.env.PORT || 6001;

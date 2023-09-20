@@ -13,11 +13,12 @@ import {User} from "../models/User.js"
             email,
             password,
             type,
-            otp
+            otp,
+            username,
         } = req.body
 
           
-        if (!firstName || !lastName ||!email || !password || !otp) {
+        if (!firstName || !lastName ||!email || !password || !otp || !username) {
             return res.status(403).json({
               success: false,
               message: 'All fields are required',
@@ -51,6 +52,7 @@ import {User} from "../models/User.js"
             email,
             password: passwordHash,
             type,
+            username,
         });
 
         const savedUser = await newUser.save();
