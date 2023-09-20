@@ -2,21 +2,22 @@ import{ User,  Advocate } from "../models/User.js";
 import Post from "../models/post.js";
 
 
-export const getUser = async(req,res)=>{
-    try {
-        const {id} = req.params;
-        const user = await User.findById(id);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(404).json({message: error.message});
-    }
-}
+//  const getUser = async(req,res)=>{
+//     try {
+//         const {id} = req.params;
+//         const user = await User.findById(id);
+//         res.status(200).json(user);
+//     } catch (error) {
+//         res.status(404).json({message: error.message});
+//     }
+// }
 
-export const createAdvocateProfile = async(req, res) => {
+const createAdvocateProfile = async(req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
         const type =  user.type;
+        
 
         if (type === "Advocate") {
             const{ 
@@ -31,6 +32,10 @@ export const createAdvocateProfile = async(req, res) => {
         
 
         const newAdvocate = new Advocate({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username,
                 location,
                 description,
                 picturePath,
@@ -52,5 +57,14 @@ export const createAdvocateProfile = async(req, res) => {
     }
 };
 
+ const showPosts = async (req, res) =>{
+    try {
+       const result = Post.find();
+       res.status(201).json(result)
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
 
-export default createAdvocateProfile;
+
+export {createAdvocateProfile, showPosts};

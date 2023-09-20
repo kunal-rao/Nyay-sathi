@@ -10,6 +10,7 @@ const getUserProfile = async (req, res)=>{
         console.log(type);
 
         if (type == "Client"){
+            
             const result = await Client.find({client_id : _id});
             // console.log(result);
             res.json(result);

@@ -18,6 +18,10 @@ export const createClientProfile = async (req, res) => {
     
 
     const newClient = new Client({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
       location,
       picturePath,
       age,

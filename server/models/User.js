@@ -42,6 +42,29 @@ const UserSchema = new mongoose.Schema(
 
 const AdvocateSchema = new mongoose.Schema(
     {
+        firstName: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
+
+        lastName: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
+        username:{
+           type: String,
+           unique: true,
+           require: true,
+        },
+        email: {
+            type: String,
+            // require: true ,
+            unique: true,
+        },
         type: {
             type: String,
             default: "Advocate"
@@ -92,7 +115,29 @@ const AdvocateSchema = new mongoose.Schema(
 
 const ClientSchema = new mongoose.Schema(
     {
-        
+        firstName: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
+
+        lastName: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
+        username:{
+           type: String,
+           unique: true,
+           require: true,
+        },
+        email: {
+            type: String,
+            // require: true ,
+            unique: true,
+        },
         type: {
             type: String,
             default: "Client"
